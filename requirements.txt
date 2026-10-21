@@ -1,0 +1,4 @@
+# Dependencias externas del entregable. El núcleo (maze, algorithms, analysis,
+# benchmark, cli, tests) funciona solo con la biblioteca estándar.
+Pillow>=10.0,<14
+pytest>=7.0

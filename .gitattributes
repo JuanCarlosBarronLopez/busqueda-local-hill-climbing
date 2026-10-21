@@ -1,0 +1,5 @@
+# Normalizacion de finales de linea: LF para codigo y documentos,
+# CRLF solo para el lanzador de Windows, y binario para las imagenes.
+* text=auto eol=lf
+*.png binary
+*.bat text eol=crlf

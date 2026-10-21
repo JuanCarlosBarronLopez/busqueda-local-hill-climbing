@@ -1,0 +1,24 @@
+# Bytecode y cachés de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cachés de herramientas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Artefactos del sistema
+.DS_Store
+Thumbs.db
+
+# Salidas de depuración que no forman parte del entregable
+results/_*.png
+results/_*.py

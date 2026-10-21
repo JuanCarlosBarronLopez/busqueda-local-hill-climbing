@@ -1,0 +1,3 @@
+Mapa B (Caso B: trampa en U)
+Variante first_choice | métrica Manhattan | mitigación Reinicios aleatorios (20) | semilla 42
+------------------------------------------------------------
