@@ -65,9 +65,11 @@ hill-climbing-lab/
 │   ├── propiedad_mesetas.py    # verifica por qué no hay mesetas
 │   └── escalabilidad.py        # mapas aleatorios 15×15 y 25×25
 ├── tools/verificacion_independiente.py   # segunda implementación, sin reusar el paquete
+├── tools/capturas.py          # capturas de la GUI y la CLI, con control de calidad
 ├── tests/test_core.py          # 17 pruebas: valores de referencia y mitigaciones
-├── tests/test_auditoria.py     # 26 pruebas: robustez, reproducibilidad, GUI
+├── tests/test_auditoria.py     # 28 pruebas: robustez, reproducibilidad, GUI
 ├── docs/modelado.md            # sección 3 del reporte (modelado formal)
+├── docs/imagenes/              # capturas publicadas de la demostración
 └── results/                    # metricas.csv, tablas, figuras/, entorno.md, log.txt
 ```
 
@@ -141,7 +143,73 @@ py -m hillclimb.vecindad8                           # informe de mesetas
 py -m hillclimb.propiedad_mesetas                   # comprueba la implicación
 py -m hillclimb.escalabilidad                       # mapas aleatorios
 py make_figures.py                                  # las 5 figuras del reporte
+py tools/capturas.py                                # capturas de la GUI y la CLI
 ```
+
+## Capturas de la demostración
+
+Las imágenes de esta sección se generan con `python tools/capturas.py`, que
+toma una captura por escenario, **verifica automáticamente** que cada una
+tiene contenido real (no está en blanco ni a medias) y que muestra el
+resultado que le corresponde —banner verde al alcanzar la meta, rojo al
+quedar atrapado—, y solo entonces la publica en `docs/imagenes/`.
+
+### 1. Caso A: convergencia exitosa
+
+![Caso A, ejecución completa hasta la meta](docs/imagenes/01_caso_a_exito.png)
+
+Steepest-Ascent con orden fijo y métrica Manhattan: 14 movimientos hasta `G`,
+todos con `Δf > 0`. El rastro de flechas marca el camino y el marco naranja
+señala la celda actual.
+
+### 2. Caso B: atrapamiento en el máximo local (3, 5)
+
+![Caso B atrapado en el máximo local](docs/imagenes/02_caso_b_atrapado.png)
+
+Desde `S = (3, 4)` el algoritmo da **un solo paso** hasta `(3, 5)` y se
+detiene: los tres vecinos libres tienen `f = −4.00`, es decir `Δf = −1.00`.
+La telemetría de la derecha muestra cada vecino evaluado con su `Δf` y la
+razón de la parada.
+
+### 3. Detalle de la telemetría
+
+![Detalle del panel de telemetría](docs/imagenes/02b_telemetria_detalle.png)
+
+Iteración, estado, `f(actual)`, la tabla de vecinos con `f(vecino)` y `Δf`
+(verde si mejora, rojo si empeora, gris si es neutro), la decisión tomada y
+los contadores acumulados.
+
+### 4. Mitigación por penalización f′(s) = f(s) − λ·n(s)
+
+![Caso B con penalización](docs/imagenes/03_penalizacion_escapa.png)
+
+Con `λ = 1` el algoritmo sale de la trampa y alcanza la meta. Cada
+estancamiento hunde `f′` del estado visitado hasta que un vecino antes
+inútil se vuelve el mejor.
+
+### 5. Mitigación por reinicios aleatorios
+
+![Caso B con reinicios aleatorios](docs/imagenes/04_reinicios_aleatorios.png)
+
+El primer intento desde `S` fracasa; un reinicio desde otra celda libre
+alcanza la meta (con semilla `2024`, en 2 reinicios).
+
+### 6. Mapa de calor y vecindad de 8 direcciones
+
+![Mapa de calor con vecindad de 8](docs/imagenes/05_vecindad8_mapa_calor.png)
+
+El sombreado va de oscuro (lejos de la meta) a claro (cerca). Con la
+vecindad de 8 direcciones aparecen valores `Δf` con decimales, porque un
+movimiento en diagonal cambia la distancia de forma distinta a uno cardinal.
+
+### 7. Modo consola (CLI)
+
+![CLI: Caso B atrapado](docs/imagenes/06_cli_caso_b_atrapado.png)
+
+![CLI: Caso B con penalización](docs/imagenes/07_cli_penalizacion.png)
+
+La CLI imprime exactamente la misma telemetría que la GUI, con el mismo
+formato, y admite `--paso` para avanzar iteración a iteración.
 
 ## Guion de demostración (6 pasos)
 
