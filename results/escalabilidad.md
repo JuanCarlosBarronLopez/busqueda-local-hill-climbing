@@ -2,7 +2,7 @@
 
 Mapas generados con semillas fijas a partir de 1000 y densidades de muro del 10 %, 20 % y 30 %. Los mapas sin solución (comprobado con BFS) se descartan y se regeneran. Las variantes aleatorias usan 200 intentos por mapa, con un máximo de 100 reinicios por ejecución.
 
-| Tamaño | Densidad | Semilla | Libres | Muros | p Steepest 4 dir. | p Steepest 8 dir. | Mesetas 4 dir. | Mesetas 8 dir. | p reforicios | p penalización | Iter. Steepest | Iter. penalización |
+| Tamaño | Densidad | Semilla | Libres | Muros | p Steepest 4 dir. | p Steepest 8 dir. | Mesetas 4 dir. | Mesetas 8 dir. | p reinicios | p penalización | Iter. Steepest | Iter. penalización |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 15×15 | 10 % | 1000 | 208 | 17 | 59.13 % | 50.00 % | 0 | 0 | 100.00 % | 100.00 % | 11.00 | 19.65 |
 | 15×15 | 20 % | 1001 | 180 | 45 | 3.89 % | 17.78 % | 0 | 0 | 98.50 % | 98.89 % | 6.88 | 37.22 |

@@ -265,7 +265,7 @@ def escribir_informe(resultados: list[Resultado], ruta: Path) -> None:
     )
     add("")
     add("| Tamaño | Densidad | Semilla | Libres | Muros | p Steepest 4 dir. | "
-        "p Steepest 8 dir. | Mesetas 4 dir. | Mesetas 8 dir. | p reforicios | "
+        "p Steepest 8 dir. | Mesetas 4 dir. | Mesetas 8 dir. | p reinicios | "
         "p penalización | Iter. Steepest | Iter. penalización |")
     add("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for r in sorted(resultados, key=lambda r: (r.filas, r.densidad)):

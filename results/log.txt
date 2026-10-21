@@ -1,3 +1,71 @@
 Mapa B (Caso B: trampa en U)
-Variante first_choice | métrica Manhattan | mitigación Reinicios aleatorios (20) | semilla 42
+Variante steepest | métrica Manhattan | mitigación Reinicios aleatorios (100) | semilla 2024
 ------------------------------------------------------------
+Iteración 1 | Estado: (3, 4) | f = -4.00 | Movimientos: 1
+  ↑ (2, 4)  f = -5.00  Δf = -1.00
+  ↓ (4, 4)  f = -5.00  Δf = -1.00
+  ← (3, 3)  f = -5.00  Δf = -1.00
+  → (3, 5)  f = -3.00  Δf = +1.00  <= elegido
+Decisión: Ascenso más pronunciado: → (3, 5) con Δf = +1.00.
+Iteración 2 | Estado: (3, 5) | f = -3.00 | Movimientos: 1
+  ↑ (2, 5)  f = -4.00  Δf = -1.00
+  ↓ (4, 5)  f = -4.00  Δf = -1.00
+  ← (3, 4)  f = -4.00  Δf = -1.00
+Decisión: Máximo local: todos los vecinos tienen Δf < 0 y f = -3.00 < 0 (óptimo global).
+Resultado: ATRAPADO EN MÁXIMO LOCAL
+——— Reinicio 1 ———
+Iteración 1 | Estado: (4, 1) | f = -8.00 | Reinicio: 1 | Movimientos: 1
+  ↑ (3, 1)  f = -7.00  Δf = +1.00  <= elegido
+  ↓ (5, 1)  f = -9.00  Δf = -1.00
+  ← (4, 0)  f = -9.00  Δf = -1.00
+  → (4, 2)  f = -7.00  Δf = +1.00
+Decisión: Ascenso más pronunciado: ↑ (3, 1) con Δf = +1.00.
+Iteración 2 | Estado: (3, 1) | f = -7.00 | Reinicio: 1 | Movimientos: 2
+  ↑ (2, 1)  f = -8.00  Δf = -1.00
+  ↓ (4, 1)  f = -8.00  Δf = -1.00
+  ← (3, 0)  f = -8.00  Δf = -1.00
+  → (3, 2)  f = -6.00  Δf = +1.00  <= elegido
+Decisión: Ascenso más pronunciado: → (3, 2) con Δf = +1.00.
+Iteración 3 | Estado: (3, 2) | f = -6.00 | Reinicio: 1 | Movimientos: 3
+  ↑ (2, 2)  f = -7.00  Δf = -1.00
+  ↓ (4, 2)  f = -7.00  Δf = -1.00
+  ← (3, 1)  f = -7.00  Δf = -1.00
+  → (3, 3)  f = -5.00  Δf = +1.00  <= elegido
+Decisión: Ascenso más pronunciado: → (3, 3) con Δf = +1.00.
+Iteración 4 | Estado: (3, 3) | f = -5.00 | Reinicio: 1 | Movimientos: 4
+  ↑ (2, 3)  f = -6.00  Δf = -1.00
+  ↓ (4, 3)  f = -6.00  Δf = -1.00
+  ← (3, 2)  f = -6.00  Δf = -1.00
+  → (3, 4)  f = -4.00  Δf = +1.00  <= elegido
+Decisión: Ascenso más pronunciado: → (3, 4) con Δf = +1.00.
+Iteración 5 | Estado: (3, 4) | f = -4.00 | Reinicio: 1 | Movimientos: 5
+  ↑ (2, 4)  f = -5.00  Δf = -1.00
+  ↓ (4, 4)  f = -5.00  Δf = -1.00
+  ← (3, 3)  f = -5.00  Δf = -1.00
+  → (3, 5)  f = -3.00  Δf = +1.00  <= elegido
+Decisión: Ascenso más pronunciado: → (3, 5) con Δf = +1.00.
+Iteración 6 | Estado: (3, 5) | f = -3.00 | Reinicio: 1 | Movimientos: 5
+  ↑ (2, 5)  f = -4.00  Δf = -1.00
+  ↓ (4, 5)  f = -4.00  Δf = -1.00
+  ← (3, 4)  f = -4.00  Δf = -1.00
+Decisión: Máximo local: todos los vecinos tienen Δf < 0 y f = -3.00 < 0 (óptimo global).
+Resultado: ATRAPADO EN MÁXIMO LOCAL
+——— Reinicio 2 ———
+Iteración 1 | Estado: (1, 7) | f = -3.00 | Reinicio: 2 | Movimientos: 1
+  ↑ (0, 7)  f = -4.00  Δf = -1.00
+  ↓ (2, 7)  f = -2.00  Δf = +1.00  <= elegido
+  → (1, 8)  f = -2.00  Δf = +1.00
+Decisión: Ascenso más pronunciado: ↓ (2, 7) con Δf = +1.00.
+Iteración 2 | Estado: (2, 7) | f = -2.00 | Reinicio: 2 | Movimientos: 2
+  ↑ (1, 7)  f = -3.00  Δf = -1.00
+  ↓ (3, 7)  f = -1.00  Δf = +1.00  <= elegido
+  → (2, 8)  f = -1.00  Δf = +1.00
+Decisión: Ascenso más pronunciado: ↓ (3, 7) con Δf = +1.00.
+Iteración 3 | Estado: (3, 7) | f = -1.00 | Reinicio: 2 | Movimientos: 3
+  ↑ (2, 7)  f = -2.00  Δf = -1.00
+  ↓ (4, 7)  f = -2.00  Δf = -1.00
+  → (3, 8)  f = 0.00  Δf = +1.00  <= elegido
+Decisión: Ascenso más pronunciado: → (3, 8) con Δf = +1.00.
+Iteración 4 | Estado: (3, 8) | f = 0.00 | Reinicio: 2 | Movimientos: 3
+Decisión: Meta alcanzada: f = 0 (óptimo global).
+Resultado: META ALCANZADA

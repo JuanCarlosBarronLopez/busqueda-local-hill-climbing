@@ -236,7 +236,8 @@ def bootstrap_ic(valores: list[float], confianza: float = 0.95, remuestreos: int
                  semilla: int = 12345) -> tuple[float, float]:
     """Intervalo de confianza por bootstrap para la media de ``valores``.
 
-    Devuelve ``(límite_inferior, límite_superior)`` en porcentaje (0-100).
+    Devuelve ``(límite_inferior, límite_superior)`` en las mismas unidades que
+    ``valores``.
     """
     if not valores:
         return (0.0, 0.0)
@@ -250,4 +251,4 @@ def bootstrap_ic(valores: list[float], confianza: float = 0.95, remuestreos: int
     alfa = (1.0 - confianza) / 2.0
     inferior = medias[int(alfa * remuestreos)]
     superior = medias[min(remuestreos - 1, int((1.0 - alfa) * remuestreos))]
-    return (inferior * 100.0, superior * 100.0)
+    return (inferior, superior)

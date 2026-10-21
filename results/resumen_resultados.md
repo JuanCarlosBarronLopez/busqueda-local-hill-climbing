@@ -6,20 +6,20 @@ Documento generado automáticamente por `python -m hillclimb.benchmark` (métric
 
 | Mapa | Métrica | Configuración | Ejecuciones | Tasa de éxito (%) | Estancamiento (%) | Iteraciones medias (éxito) | Iteraciones medias (fallo) | Reinicios medios | Tiempo mediana (ms) | Tiempo IQR (ms) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A | Manhattan | HC simple (primer mejora) | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0581 | 0.0032 |
-| A | Manhattan | HC steepest (ascenso más pronunciado) | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0628 | 0.0043 |
-| A | Manhattan | HC estocástico (∝ Δf) | 1000 | 100.00 | 0.00 | 7.89 | — | 0.00 | 0.0716 | 0.0011 |
-| A | Manhattan | HC first-choice (aleatorio) | 1000 | 100.00 | 0.00 | 7.89 | — | 0.00 | 0.0685 | 0.0017 |
-| A | Manhattan | Steepest + laterales L=20 | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0641 | 0.0007 |
-| A | Manhattan | Steepest + penalización λ=1 | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0656 | 0.0031 |
-| A | Manhattan | Steepest + reinicios aleatorios (máx 100) | 1000 | 100.00 | 0.00 | 7.89 | — | 0.00 | 0.0743 | 0.0013 |
-| B | Manhattan | HC simple (primer mejora) | 50 | 48.00 | 52.00 | 5.21 | 5.35 | 0.00 | 0.0427 | 0.0003 |
-| B | Manhattan | HC steepest (ascenso más pronunciado) | 50 | 48.00 | 52.00 | 5.21 | 5.35 | 0.00 | 0.0456 | 0.0008 |
-| B | Manhattan | HC estocástico (∝ Δf) | 1000 | 49.60 | 50.40 | 5.57 | 5.22 | 0.00 | 0.0518 | 0.0004 |
-| B | Manhattan | HC first-choice (aleatorio) | 1000 | 50.90 | 49.10 | 5.71 | 5.14 | 0.00 | 0.0506 | 0.0010 |
-| B | Manhattan | Steepest + laterales L=20 | 50 | 48.00 | 52.00 | 5.21 | 5.35 | 0.00 | 0.0461 | 0.0012 |
-| B | Manhattan | Steepest + penalización λ=1 | 50 | 100.00 | 0.00 | 38.04 | — | 0.00 | 0.3009 | 0.0271 |
-| B | Manhattan | Steepest + reinicios aleatorios (máx 100) | 1000 | 100.00 | 0.00 | 11.34 | — | 1.14 | 0.1042 | 0.0024 |
+| A | Manhattan | HC simple (primer mejora) | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0556 | 0.0020 |
+| A | Manhattan | HC steepest (ascenso más pronunciado) | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0571 | 0.0020 |
+| A | Manhattan | HC estocástico (∝ Δf) | 1000 | 100.00 | 0.00 | 7.89 | — | 0.00 | 0.0626 | 0.0011 |
+| A | Manhattan | HC first-choice (aleatorio) | 1000 | 100.00 | 0.00 | 7.89 | — | 0.00 | 0.0646 | 0.0040 |
+| A | Manhattan | Steepest + laterales L=20 | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0568 | 0.0007 |
+| A | Manhattan | Steepest + penalización λ=1 | 58 | 100.00 | 0.00 | 7.97 | — | 0.00 | 0.0573 | 0.0012 |
+| A | Manhattan | Steepest + reinicios aleatorios (máx 100) | 1000 | 100.00 | 0.00 | 7.89 | — | 0.00 | 0.0657 | 0.0005 |
+| B | Manhattan | HC simple (primer mejora) | 50 | 48.00 | 52.00 | 5.21 | 5.35 | 0.00 | 0.0395 | 0.0002 |
+| B | Manhattan | HC steepest (ascenso más pronunciado) | 50 | 48.00 | 52.00 | 5.21 | 5.35 | 0.00 | 0.0420 | 0.0003 |
+| B | Manhattan | HC estocástico (∝ Δf) | 1000 | 49.60 | 50.40 | 5.57 | 5.22 | 0.00 | 0.0460 | 0.0004 |
+| B | Manhattan | HC first-choice (aleatorio) | 1000 | 50.90 | 49.10 | 5.71 | 5.14 | 0.00 | 0.0454 | 0.0003 |
+| B | Manhattan | Steepest + laterales L=20 | 50 | 48.00 | 52.00 | 5.21 | 5.35 | 0.00 | 0.0426 | 0.0011 |
+| B | Manhattan | Steepest + penalización λ=1 | 50 | 100.00 | 0.00 | 38.04 | — | 0.00 | 0.2671 | 0.0044 |
+| B | Manhattan | Steepest + reinicios aleatorios (máx 100) | 1000 | 100.00 | 0.00 | 11.34 | — | 1.14 | 0.0940 | 0.0000 |
 
 
 ## 2. Dependencia del resultado respecto al desempate
@@ -64,20 +64,19 @@ Con λ = 1 y suficiente presupuesto de iteraciones, el algoritmo escapa de la tr
 - E[K] = 1/p = **2.08** ejecuciones totales.
 - E[R] = (1 − p)/p = **1.08** reinicios (primer intento aleatorio).
 - Si el primer intento partiese de `S`, que está dentro de la trampa, el primer fallo sería seguro y E[R] = 1/p = **2.08**.
-- Medido sobre 1000 ejecuciones con éxito: **1.14** reinicios de media, con intervalo de confianza del 95 % por bootstrap [104.50 %, 124.50 %] (5000 remuestreos).
+- Medido sobre 1000 ejecuciones con éxito: **1.14** reinicios de media, con intervalo de confianza del 95 % por bootstrap [1.04, 1.25] reinicios (5000 remuestreos).
 
-La media medida (1.14) NO cae dentro del intervalo bootstrap y es compatible con E[R] = (1 − p)/p = 1.08, mientras que difiere de 1/p = 2.08, que solo correspondería a empezar siempre desde `S`.
+El valor teórico E[R] = (1 - p)/p = 1.08 cae dentro del intervalo bootstrap, mientras que E[R] = 1/p = 2.08 solo correspondería a un primer intento que partiese siempre de `S` (fallo seguro en el mapa B).
 
-| r (intentos permitidos) | 1 − (1 − p)^r teórico | Frecuencia empírica |
+| Intentos permitidos r | 1 - (1 - p)^r teórico | Empírico: éxito en ≤ r intentos |
 |---|---|---|
-| 0 | 48.00 % | 0.00 % |
-| 1 | 72.96 % | 46.80 % |
-| 2 | 85.94 % | 72.40 % |
-| 3 | 92.69 % | 85.40 % |
-| 4 | 96.20 % | 91.90 % |
-| 5 | 98.02 % | 95.50 % |
+| 1 | 48.00 % | 46.80 % |
+| 2 | 72.96 % | 72.40 % |
+| 3 | 85.94 % | 85.40 % |
+| 4 | 92.69 % | 91.90 % |
+| 5 | 96.20 % | 95.50 % |
 
-**Costo esperado.** Con t_f = 0.0475 ms (intento fallido) y t_s = 0.0441 ms (intento exitoso), medidos en el mismo experimento, el costo teórico `((1 − p)/p)·t_f + t_s` = **0.0956 ms**; la mediana medida por ejecución completa (todos sus intentos) es **0.1042 ms**.
+**Costo esperado.** Con t_f = 0.0400 ms (intento fallido) y t_s = 0.0298 ms (intento exitoso), medidos en el mismo experimento, el costo teórico `((1 − p)/p)·t_f + t_s` = **0.0732 ms**; la mediana medida por ejecución completa (todos sus intentos) es **0.0940 ms**.
 
 Demostración manual con semilla fija 2024: desde S en el mapa B, los reinicios aleatorios alcanzan la meta («goal») usando 2 reinicio(s).
 
@@ -97,7 +96,7 @@ El mismo trabajo resuelto sin construir los objetos `StepInfo` de la telemetría
 
 ## 12. Eficiencia temporal
 
-Mediana por ejecución del steepest en el mapa B: 0.0441 ms (éxito) y 0.0475 ms (fallo); mediana de toda la configuración exhaustiva en el mapa A: 0.0628 ms por ejecución. La búsqueda local es órdenes de magnitud más barata en tiempo, pero paga esa ventaja con la posibilidad de quedar atrapada.
+Mediana por ejecución del steepest en el mapa B: 0.0298 ms (éxito) y 0.0400 ms (fallo); mediana de toda la configuración exhaustiva en el mapa A: 0.0571 ms por ejecución. La búsqueda local es órdenes de magnitud más barata en tiempo, pero paga esa ventaja con la posibilidad de quedar atrapada.
 
 ## 13. Análisis adicionales
 

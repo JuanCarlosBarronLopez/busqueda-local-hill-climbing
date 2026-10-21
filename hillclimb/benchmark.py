@@ -434,7 +434,7 @@ def escribir_entorno(ruta: Path) -> None:
         f"- **Python:** {version}",
         f"- **Sistema operativo:** {maquina.system} {maquina.release} "
         f"(build {maquina.version})",
-        f"- **Procesador:** {maquina.processor or 'no reportado'} — {cpu} núcleos lógicos",
+        f"- **Procesador:** {maquina.processor or 'no reportado'} — {cpu}",
         f"- **Arquitectura:** {maquina.machine}",
         f"- **Pillow:** {pillow}",
         "- **pytest:** véase `requirements.txt`",
@@ -553,12 +553,12 @@ def teoria_reinicios(filas: list[Fila], maze: Maze) -> dict:
     t_f = statistics.fmean(tiempos_fallo) if tiempos_fallo else 0.0
     valores_r = reinicios.extra.get("reinicios_valores", [])
     ic = bootstrap_ic(valores_r, remuestreos=REMUESTREOS_BOOTSTRAP)
-    # Frecuencia empírica de acertar dentro de los primeros r intentos.
+    # Éxito dentro de los primeros r intentos (r = 1..5):
+    #   teórico:  1 - (1 - p)^r
+    #   empírico: fracción de ejecuciones con R < r  (R = K - 1)
     n_r = len(valores_r)
-    empírico = {}
-    for r in range(0, 6):
-        if n_r:
-            empírico[r] = 100.0 * sum(1 for k in valores_r if k < r) / n_r
+    empírico = {r: 100.0 * sum(1 for k in valores_r if k < r) / n_r
+                for r in range(1, 6)} if n_r else {}
     return {
         "p": p,
         "e_intentos": expected_restarts(p),          # E[K]
@@ -566,7 +566,7 @@ def teoria_reinicios(filas: list[Fila], maze: Maze) -> dict:
         "e_reinicios_desde_S": expected_restarts(p),  # E[R] si el 1.º parte de S
         "reinicios_medios": reinicios.reinicios,
         "ic95": ic,
-        "exito_tras_r": {r: success_after(p, r + 1) for r in range(0, 6)},
+        "exito_tras_r": {r: success_after(p, r) for r in range(1, 6)},
         "empirico_r": empírico,
         "costo_esperado": expected_cost(p, t_f, t_s),
         "tiempo_medio_medido": reinicios.tiempo_mediana,
@@ -745,34 +745,24 @@ def escribir_resumen(filas: list[Fila], tabla: str, extra: dict, teoria_b: dict,
         f"- Medido sobre {teoria_b['n_muestra_r']} ejecuciones con éxito: "
         f"**{teoria_b['reinicios_medios']:.2f}** reinicios de media, con intervalo de "
         f"confianza del 95 % por bootstrap "
-        f"[{teoria_b['ic95'][0]:.2f} %, {teoria_b['ic95'][1]:.2f} %] "
+        f"[{teoria_b['ic95'][0]:.2f}, {teoria_b['ic95'][1]:.2f}] reinicios "
         f"({REMUESTREOS_BOOTSTRAP} remuestreos)."
     )
     add("")
-    coincide = (
-        teoria_b["ic95"][0] <= teoria_b["reinicios_medios"] <= teoria_b["ic95"][1]
+    contiene = (
+        teoria_b["ic95"][0] <= teoria_b["e_reinicios_random"] <= teoria_b["ic95"][1]
     )
     add(
-        f"La media medida ({teoria_b['reinicios_medios']:.2f}) "
-        + ("cae dentro" if coincide else "NO cae dentro")
-        + " del intervalo bootstrap y es "
-        + (
-            "compatible"
-            if abs(teoria_b["reinicios_medios"] - teoria_b["e_reinicios_random"]) < 0.5
-            else "incompatible"
-        )
-        + f" con E[R] = (1 − p)/p = {teoria_b['e_reinicios_random']:.2f}"
-        + (
-            f", mientras que difiere de 1/p = {teoria_b['e_reinicios_desde_S']:.2f}, que "
-            "solo correspondería a empezar siempre desde `S`."
-            if abs(teoria_b["reinicios_medios"] - teoria_b["e_reinicios_random"]) < 0.5
-            else "."
-        )
+        f"El valor teórico E[R] = (1 - p)/p = {teoria_b['e_reinicios_random']:.2f} "
+        + ("cae dentro" if contiene else "NO cae dentro")
+        + " del intervalo bootstrap, mientras que E[R] = 1/p = "
+        f"{teoria_b['e_reinicios_desde_S']:.2f} solo correspondería a un primer intento "
+        "que partiese siempre de `S` (fallo seguro en el mapa B)."
     )
     add("")
-    add("| r (intentos permitidos) | 1 − (1 − p)^r teórico | Frecuencia empírica |")
+    add("| Intentos permitidos r | 1 - (1 - p)^r teórico | Empírico: éxito en ≤ r intentos |")
     add("|---|---|---|")
-    for r in range(0, 6):
+    for r in range(1, 6):
         teor = teoria_b["exito_tras_r"].get(r, 0.0)
         emp = teoria_b["empirico_r"].get(r, 0.0)
         add(f"| {r} | {teor * 100:.2f} % | {emp:.2f} % |")
